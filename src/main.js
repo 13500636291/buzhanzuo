@@ -19,7 +19,7 @@ Vue.config.productionTip = false
 
 // 将element-ui绑定到全局
 Vue.use(ElementUI)
-console.log(process)
+// console.log(process)
 
 new Vue({
   router,

@@ -1,6 +1,6 @@
 <template>
     <div class="class">
-        我是管理模块
+        我是管理模块add
     </div>
 </template>
 <script>

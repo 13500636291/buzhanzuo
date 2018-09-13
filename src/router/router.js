@@ -4,7 +4,8 @@ import VueRouter from 'vue-router'
 import login from '@/view/login'
 import home from '@/view/home'
 import overview from '@/view/overview/overview'
-import manage from '@/view/manage/manage'
+import manageAdd from '@/view/manage/manageAdd'
+import manageSchool from '@/view/manage/manageSchool'
 import account from '@/view/account/account'
 import complaint from '@/view/complaint/complaint'
 import permission from '@/view/permission/permission'
@@ -31,9 +32,15 @@ export default new VueRouter({
                 },
                 // 学校管理 二级组件
                 {
-                    path: 'manage',
-                    name: 'manage',
-                    component: manage
+                    path: 'manageAdd',
+                    name: 'manageAdd',
+                    component: manageAdd
+                },
+                // 学校管理 二级组件
+                {
+                    path: 'manageSchool',
+                    name: 'manageSchool',
+                    component: manageSchool
                 },
                 // 学校账号 二级组件
                 {

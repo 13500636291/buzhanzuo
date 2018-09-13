@@ -29,3 +29,18 @@ body,
 #app {
   height: 100%;
 }
+.elHover {
+  height: 31pt;
+}
+.elHover:hover{
+  background-color: #122043!important;
+  
+  
+}
+// .elHover:before {
+//   content: "";
+//   display: block;
+//   width: 3pt;
+//   height: 31pt;
+//   background-color:#409EFF;
+// }
