@@ -144,7 +144,6 @@ export default {
         // }
     }
     .elMain {
-        background-color: white;
         margin: 7pt 108pt 5pt 6pt;
     }
     .right {
@@ -165,7 +164,6 @@ export default {
             }
         }
         .helpText {
-            height: 56pt;
             background-color: white;
             padding-top: 8pt;
             padding-left: 11pt;

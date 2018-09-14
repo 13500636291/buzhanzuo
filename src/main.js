@@ -2,6 +2,9 @@
 import Vue from 'vue'
 import App from './App.vue'
 
+import VeLine from 'v-charts/lib/line.common';
+import VeMap from 'v-charts/lib/map.common';
+import 'echarts/lib/component/markLine';
 // Element-ui模块
 import ElementUI from 'element-ui'
 // 路由模块
@@ -15,6 +18,9 @@ import './styles/reset.scss'
 // 引入element-ui样式
 import 'element-ui/lib/theme-chalk/index.css'
 
+[VeLine, VeMap].forEach(comp => {
+  Vue.component(comp.name, comp);
+});
 Vue.config.productionTip = false
 
 // 将element-ui绑定到全局

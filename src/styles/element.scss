@@ -13,11 +13,16 @@
 //     background-color: #122043!important;
 //   }
 // }
+.el-container .el-submenu__title {
+  color: #BBBBBB!important;
+}
 .el-container .el-submenu .el-menu-item, .el-container .el-submenu__title {
   height: 31pt;
   line-height: 31pt;
-  color: #BBBBBB!important;
 }
 .el-submenu__title:hover{
   background-color: #122043!important;
+}
+.el-container .el-main {
+  padding: 0;
 }
