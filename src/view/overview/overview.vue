@@ -17,43 +17,45 @@
                 <i class="el-icon-document account"></i>
             </div>
         </div>
+        <!-- 趋势数据图表 -->
         <div id="dataImg">
           <div style="width:100%;" class="page-line-chart">
             <!-- 图标标题 -->
             <h4>趋势图</h4>
             <!-- 选择区域 -->
             <div class="select">
-              <!-- 日期选择 -->
-              <el-date-picker
+                <!-- 日期选择 -->
+                <el-date-picker
                 class="dataSelect"
                 size='small'
-                width="200px"
                 v-model="value6"
                 type="daterange"
                 align="left"
                 unlink-panels
-                range-separator="至"
+                range-separator="-"
                 start-placeholder="开始日期"
                 end-placeholder="结束日期"
                 :picker-options="pickerOptions2">
-              </el-date-picker>
-              <!-- 学校选择 -->
-              <el-select v-model="valueShool" placeholder="请选择">
+                </el-date-picker>
+                <!-- 选择学校 -->
+                <el-select class="selSc"  v-model="valueShool" placeholder="请选择">
                 <el-option
-                  v-for="item in options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
                 </el-option>
-              </el-select>
-              <!-- 搜索学校 -->
-              <el-input
+                </el-select>
+                <!-- 搜索学校 -->
+                <el-input
                 class="search"
                 placeholder="请输入内容"
                 prefix-icon="el-icon-search"
                 v-model="input21">
-              </el-input>
+                <i class="el-icon-search"></i>
+                </el-input>
             </div>
+            <!-- canvas核心图 -->
             <ve-line
             :tooltip-visible="true"
             :legend-visible="false"
@@ -62,6 +64,7 @@
             :width="width"
             :height="height">
             </ve-line>
+            <!-- 图表数据总结 -->
             <div class="totalNum">
               <span>座位数:</span>
               <span>座位总数:</span>
@@ -69,8 +72,20 @@
             </div>
           </div>
         </div>
+        <!-- 数据列表 -->
         <div class="dataList">
-            <h3>数据列表</h3>
+            <div class="top">
+                <h3>数据列表</h3>
+                <el-date-picker
+                class="listData"
+                v-model="value7"
+                size="small"
+                type="daterange"
+                range-separator="-"
+                start-placeholder="开始日期"
+                end-placeholder="结束日期">
+                </el-date-picker>
+            </div>
             <table>
                 <tr>
                     <th>#</th>
@@ -93,7 +108,6 @@
                     <td>123</td>
                     <td>23%</td>
                 </tr>
-                
             </table>
         </div>
     </div>
@@ -175,6 +189,8 @@ export default {
         seat:1234,
         seatTotal:3124,
         useNum:2094,
+        // 数据列表
+        value7:''
       }
     },
     mounted(){
@@ -243,7 +259,11 @@ export default {
           width: 100%;
           height: 33px;
           .dataSelect {
-
+              width: 200px;
+          }
+          .selSc {
+              margin-left: 9px;
+              width: 179px;
           }
           .search {
             float: right;
@@ -272,9 +292,17 @@ export default {
         padding-top: 20px;
         box-sizing: border-box;
         background-color: white;
-        h3 {
-            font-size: 16px;
-            font-weight: bold;
+        .top {
+            height: 40px;
+            h3 {
+                font-size: 16px;
+                font-weight: bold;
+                float: left;
+            }
+            .listData {
+                width: 200px;
+                float: right;
+            }
         }
         table {
             width: 100%;
@@ -282,7 +310,7 @@ export default {
             margin-top: 20px;
             font-size: 12px;
             tr {
-                height: 40px;
+                height: 20px;
                 th{
                     font-size: 12px;
                     font-weight: bold;
