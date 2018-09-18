@@ -18,10 +18,56 @@
             </div>
         </div>
         <div id="dataImg">
-            <div style="width:100%;" class="page-line-chart">
-                <h4>趋势图</h4>
-                <ve-line :data="chartData" :settings="chartSettings" :height="height"></ve-line>
+          <div style="width:100%;" class="page-line-chart">
+            <!-- 图标标题 -->
+            <h4>趋势图</h4>
+            <!-- 选择区域 -->
+            <div class="select">
+              <!-- 日期选择 -->
+              <el-date-picker
+                class="dataSelect"
+                size='small'
+                width="200px"
+                v-model="value6"
+                type="daterange"
+                align="left"
+                unlink-panels
+                range-separator="至"
+                start-placeholder="开始日期"
+                end-placeholder="结束日期"
+                :picker-options="pickerOptions2">
+              </el-date-picker>
+              <!-- 学校选择 -->
+              <el-select v-model="valueShool" placeholder="请选择">
+                <el-option
+                  v-for="item in options"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+              <!-- 搜索学校 -->
+              <el-input
+                class="search"
+                placeholder="请输入内容"
+                prefix-icon="el-icon-search"
+                v-model="input21">
+              </el-input>
             </div>
+            <ve-line
+            :tooltip-visible="true"
+            :legend-visible="false"
+            :data="chartData"
+            :settings="chartSettings"
+            :width="width"
+            :height="height">
+            </ve-line>
+            <div class="totalNum">
+              <span>座位数:</span>
+              <span>座位总数:</span>
+              <span>使用人数:</span>
+            </div>
+          </div>
         </div>
         <div class="dataList">
             <h3>数据列表</h3>
@@ -56,30 +102,91 @@
 
 export default {
     data(){
-        return {
-            height:'190pt',
-            chartData: {
-                columns: ["日期", "访问用户", "下单用户", "下单率"],
-                rows: [
-                { 日期: "1/1", 访问用户: 1393, 下单用户: 1093, 下单率: 0.32 },
-                { 日期: "1/2", 访问用户: 3530, 下单用户: 3230, 下单率: 0.26 },
-                { 日期: "1/3", 访问用户: 2923, 下单用户: 2623, 下单率: 0.76 },
-                { 日期: "1/4", 访问用户: 1723, 下单用户: 1423, 下单率: 0.49 },
-                { 日期: "1/5", 访问用户: 3792, 下单用户: 3492, 下单率: 0.323 },
-                { 日期: "1/6", 访问用户: 4593, 下单用户: 4293, 下单率: 0.78 }
-                ]
-            },
-            chartSettings: {
-                metrics:['访问用户','下单用户'],
-                dimension: ['日期']
+      return {
+        width:'767px',
+        height:'310px',
+        chartData: {
+          columns: ["日期", "使用人数"],
+          rows: [
+          { 日期: "2018-6-24", 使用人数: 1000 },
+          { 日期: "2018-6-25", 使用人数: 3100 },
+          { 日期: "2018-6-26", 使用人数: 1200 },
+          { 日期: "2018-6-27", 使用人数: 2300 },
+          { 日期: "2018-6-28", 使用人数: 1400 },
+          { 日期: "2018-6-29", 使用人数: 1000 },
+          { 日期: "2018-6-30", 使用人数: 2000 },
+          ]
+        },
+        chartSettings: {
+          area: true
+        },
+        
+        input21: '',
+
+        pickerOptions2: {
+          shortcuts: [{
+            text: '最近一周',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+              picker.$emit('pick', [start, end]);
             }
-        }
+          }, {
+            text: '最近一个月',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+              picker.$emit('pick', [start, end]);
+            }
+          }, {
+            text: '最近三个月',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
+              picker.$emit('pick', [start, end]);
+            }
+          }]
+        },
+        // 日期选择
+        value6: '',
+        dataStart:1,
+        dataEnd:1,
+        // 搜索学校
+        valueShool:'',        
+        options: [{
+          value: '选项1',
+          label: '黄金糕'
+        }, {
+          value: '选项2',
+          label: '双皮奶'
+        }, {
+          value: '选项3',
+          label: '蚵仔煎'
+        }, {
+          value: '选项4',
+          label: '龙须面'
+        }, {
+            value: '选项5',
+            label: '北京烤鸭'
+        }],
+        seat:1234,
+        seatTotal:3124,
+        useNum:2094,
+      }
     },
     mounted(){
      
     },
     methods:{
-
+      abc:function(){
+        this.dataStart = this.$moment(this.value6[0]).format('YYYY-MM-DD')
+        this.dataEnd = this.$moment(this.value6[1]).format('YYYY-MM-DD')
+        console.log(this.dataStart)
+        console.log(this.dataEnd)
+      }
     }
 }
 </script>
@@ -89,26 +196,26 @@ export default {
     height: 100%;
     .top {
         width: 100%;
-        height: 51pt;
-        font-size: 9pt;
+        height: 102px;
+        font-size: 18px;
         font-weight: bold;
         .numTotal {
-            width: 148pt;
-            padding: 16pt 12pt; 
-            border-radius:3pt;
+            width: 32.38%;
+            padding: 32px 24px; 
+            border-radius:6px;
             -webkit-box-sizing: border-box;
             background-color: white;
             position: relative;
             float: left;
-            margin-right: 7pt;
+            margin-right: 1.43%;
             &:last-of-type {
                 margin: 0;
             }
             i {
                 position: absolute;
-                top: 18pt;
-                right: 16pt;
-                font-size: 16pt;
+                top: 36px;
+                right: 32px;
+                font-size: 32px;
             }
             .school {
                 color: #FF2161;
@@ -122,39 +229,68 @@ export default {
         }
     }
     #dataImg {
-        width: 458pt;
-        height: 214pt;
-        margin-top: 6pt;
+        width: 100%;
+        margin: 12px 0 9px 0;
+        padding: 20px 26px 9px 18px;
+        box-sizing: border-box;
         background-color: white;
+        h4 {
+          font-weight: bold;
+          font-size: 15px;
+        }
+        .select {
+          margin-top: 18px;
+          width: 100%;
+          height: 33px;
+          .dataSelect {
+
+          }
+          .search {
+            float: right;
+            width: 179px;
+            .el-input__inner {
+              height: 33px!important;
+              line-height: 33px;
+            }
+          }
+        }
+        .totalNum {
+          text-align: center;
+          word-spacing: 10px;
+          font-weight: bold;
+          font-size: 13px;
+          span{
+            margin-right: 92px;            
+          }
+        }
     }
     .dataList {
-        width: 458pt;
-        height: 102pt;
-        margin-top: 6pt;
-        padding-left: 12pt;
-        padding-top: 10pt;
+        width: 100%;
+        height: 204px;
+        margin-top: 12px;
+        padding-left: 24px;
+        padding-top: 20px;
         box-sizing: border-box;
         background-color: white;
         h3 {
-            font-size: 8pt;
+            font-size: 16px;
             font-weight: bold;
         }
         table {
             width: 100%;
             text-align: center;
-            margin-top: 10pt;
-            font-size: 6pt;
+            margin-top: 20px;
+            font-size: 12px;
             tr {
-                height: 20pt;
+                height: 40px;
                 th{
-                    font-size: 6pt;
+                    font-size: 12px;
                     font-weight: bold;
-                    margin-bottom: 5pt;
+                    margin-bottom: 10px;
                 }
                 td{
-                    border-bottom: 1pt solid #ccc;
-            vertical-align: bottom;
-
+                  border-bottom: 1px solid #ccc;
+                  vertical-align: bottom;
                 }
             }
         }

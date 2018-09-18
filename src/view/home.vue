@@ -58,10 +58,10 @@
             </el-aside>
             <el-main class="elMain"><router-view></router-view></el-main>
             <div class="right">
-                <div class="helpTitle">
+                <div class="helptitle">
                     <p>帮助中心</p>
                 </div>
-                <div class="helpText">
+                <div class="helptext">
                     <p>客服电话:</p>
                     <p>13851863098</p>
                     <p>工作时间：</p>
@@ -100,19 +100,19 @@ export default {
         width: 100%;
         height: 100%;
         .el-aside {
-            width: 112pt!important;
+            width: 224px!important;
             width: 100%;
             height: 100%;
             background-color: #0E1935;
             h3{
-            margin: 16pt 0 0 9pt;
-            font-size: 10pt;
-            margin-bottom: 10pt;
+            margin: 32px 0 0 18px;
+            font-size: 20px;
+            margin-bottom: 20px;
             color: white;
             }
             .el-menu-admin{
                 width: 100%;
-                font-size: 8pt;
+                font-size: 16px;
                 border-right: 0;
                 .el-menu-item {
                     min-width: 0;
@@ -124,8 +124,8 @@ export default {
                             left: 0;
                             top: 0;
                             content: "";
-                            width: 3pt;
-                            height: 31pt;
+                            width: 6px;
+                            height: 62px;
                             background-color: #409EFF;
                         }
                     }
@@ -133,48 +133,47 @@ export default {
             }
             .layout {
                 position: absolute;
-                left: 9pt;
-                bottom: 21pt;
-                width: 94pt;
+                left: 18px;
+                bottom: 42px;
+                width: 188px;
                 text-align: center;
             }
         }
-        // .el-submenu__title:hover{
-        //     background-color: #122043!important;
-        // }
-    }
-    .elMain {
-        margin: 7pt 108pt 5pt 6pt;
-    }
-    .right {
-        position: fixed;
-        top: 7pt;
-        right: 0;
-        background-color: #F5F5F5;
-        width: 96pt;
-        .helpTitle {
-            width: 94pt;
-            height: 24pt;
-            background-color: #ECECEC;
-            p{
-                font-size: 9pt;
-                line-height: 24pt;
-                font-weight: bold;
-                text-align: center;
+        .elMain {
+          width: 914px;
+          margin: 14px 216px 10px 12px;
+        }
+        .right {
+            position: fixed;
+            top: 14px;
+            right: 0;
+            background-color: #F5F5F5;
+            width: 192px;
+            .helptitle {
+                width: 198px;
+                height: 48px;
+                background-color: #ECECEC;
+                p{
+                    font-size: 18px;
+                    line-height: 42px;
+                    font-weight: bold;
+                    text-align: center;
+                }
+            }
+            .helptext {
+                background-color: white;
+                padding-top: 16px;
+                padding-left: 22px;
+                box-sizing: border-box;
+                p {
+                    font-size: 12px;
+                    font-weight: bold;
+                    margin-bottom: 12px;
+                }
             }
         }
-        .helpText {
-            background-color: white;
-            padding-top: 8pt;
-            padding-left: 11pt;
-            box-sizing: border-box;
-            p {
-                font-size: 6pt;
-                font-weight: bold;
-                margin-bottom: 6pt;
-            }
-        }
     }
+    
 }
 
 </style>
